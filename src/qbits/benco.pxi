@@ -84,7 +84,7 @@
     (str "d"
          (transduce (map -encode)
                     string-builder
-                    (into {} (u/sort-by key x)))
+                    (u/sort-by key x))
          "e")))
 
 (deftype UTF8StringReader [s idx len]
