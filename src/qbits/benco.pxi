@@ -66,7 +66,7 @@
   (-encode [x] (str (count x)  ":" x))
 
   Number
-  (-encode [x] (str \i x \e))
+  (-encode [x] (str "i" x "e"))
 
   Keyword
   (-encode [x] (-encode (name x)))
@@ -81,9 +81,11 @@
 
   IMap
   (-encode [x]
-    (let [xs (into {} (u/sort-by key x))]
-      (str "d" (transduce (map -encode)
-                          string-builder xs) "e"))))
+    (str "d"
+         (transduce (map -encode)
+                    string-builder
+                    (into {} (u/sort-by key x)))
+         "e")))
 
 (deftype UTF8StringReader [s idx len]
   IUTF8InputStream
