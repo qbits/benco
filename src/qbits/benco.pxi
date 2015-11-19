@@ -1,10 +1,10 @@
-(ns qbits.bencode
+(ns qbits.benco
   (:require
    [pixie.streams :as st :refer [IInputStream]]
    [pixie.io :as io]
    [pixie.fs :as fs :refer [IFile]]
    [pixie.streams.utf8  :as utf8 :refer [IUTF8InputStream read-char]]
-   [qbits.bencode.utils :as u]))
+   [qbits.benco.utils :as u]))
 
 (defprotocol IEncodable
   (-encode [x]))

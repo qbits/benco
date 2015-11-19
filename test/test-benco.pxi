@@ -1,8 +1,7 @@
-(ns qbits.bencode.test
+(ns qbits.benco.test
   (:require
-   [qbits.bencode.utils :as u]
    [pixie.test :as t]
-   [qbits.bencode :refer :all]))
+   [qbits.benco :refer :all]))
 
 (t/deftest test-bytestring
   (t/assert= "bar"

@@ -1,4 +1,4 @@
-(ns qbits.bencode.utils)
+(ns qbits.benco.utils)
 
 (defn trampoline [f]
   (let [result (f)]
