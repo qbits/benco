@@ -1,0 +1,4 @@
+{:name qbits.bencode
+ :version "0.1.0"
+ :description ""
+ :source-paths ["src"]}
