@@ -3,7 +3,8 @@
    [pixie.streams :as st :refer [IInputStream]]
    [pixie.io :as io]
    [pixie.fs :as fs :refer [IFile]]
-   [pixie.streams.utf8  :as utf8 :refer [IUTF8InputStream read-char]]))
+   [pixie.streams.utf8  :as utf8 :refer [IUTF8InputStream read-char]]
+   [qbits.bencode.utils :as u]))
 
 (defprotocol IEncodable
   (-encode [x]))
@@ -80,7 +81,9 @@
 
   IMap
   (-encode [x]
-    (str "d" (transduce (map -encode) string-builder x) "e")))
+    (let [xs (into {} (u/sort-by key x))]
+      (str "d" (transduce (map -encode)
+                          string-builder xs) "e"))))
 
 (deftype UTF8StringReader [s idx len]
   IUTF8InputStream

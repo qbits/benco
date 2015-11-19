@@ -1,5 +1,6 @@
 (ns qbits.bencode.test
   (:require
+   [qbits.bencode.utils :as u]
    [pixie.test :as t]
    [qbits.bencode :refer :all]))
 
@@ -21,8 +22,9 @@
   (t/assert= "i-42e" (encode -42)))
 
 (t/deftest test-coll
-  (t/assert= "l1:a1:bi1ee"
-             (encode ["a" :b 1]))
-
-  (t/assert= {"bar" 2, "test" {"a" "foo"}}
+  (t/assert= (encode {"z" "1" "a" "foo" })
+             "d1:a3:foo1:z1:1e")
+  (t/assert= (decode "d1:a3:foo1:z1:1e ")
+            {"z" "1" "a" "foo" })
+  (t/assert= {"bar" 2, "test" {"a" "foo" }}
              (decode "d3:bari2e4:testd1:a3:fooee")))
